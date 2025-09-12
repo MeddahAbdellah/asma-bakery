@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gamja+Flower&display=swap"
+      rel="stylesheet"
+    />
+    <title>Ateliers Patisserie</title>
+    <style>
+      /* Global Styles */
+      button,
+      button * {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #f857a6; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #fd34a6,
+          #f857a6
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #fd34a6,
+          #f857a6
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        background: url("background.png") repeat;
+        background-size: 300px 300px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        min-height: 100dvh;
+        min-width: 100dvw;
+        font-family: "Gamja Flower", sans-serif;
+      }
+
+      /* Hero section */
+      .hero {
+        display: grid;
+        grid-template-rows: 4fr 2fr 1fr;
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+        height: 100dvh;
+      }
+
+      .hero .title {
+        width: 80%;
+        height: auto;
+        max-width: none;
+      }
+
+      @media screen and (min-width: 800px) {
+        .hero .title {
+          width: 40%;
+        }
+      }
+
+      .description {
+        position: relative;
+        align-self: stretch; /* fill the 1fr row */
+        justify-self: center;
+        max-width: 100%;
+        overflow: hidden; /* clip if needed */
+        background: none;
+        font-family: "Gamja Flower", sans-serif;
+        font-weight: 800;
+        font-size: 1.2em;
+      }
+
+      .description img {
+        width: 100%;
+        height: auto;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      .description p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-inline: 1rem;
+        padding-block: 1rem;
+        box-sizing: border-box;
+        color: #000;
+        width: 100%;
+        margin: 0;
+        pointer-events: none; /* Ensure only the button itself is clickable */
+      }
+
+      .cartoon-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem 1rem;
+        border: 2px solid #000; /* A warm brown for the border */
+        border-radius: 30px; /* Rounded corners for a friendly look */
+        background-color: #fdf8ed; /* A light peach background */
+        font-family: "Gamja Flower", sans-serif;
+        color: #000; /* Matching text color */
+        font-weight: 800;
+        font-size: 1.8em;
+        text-decoration: none; /* Remove underline from link */
+        cursor: pointer;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+        transition: all 0.3s ease; /* Smooth transitions for hover effects */
+      }
+
+      .with-flowers {
+        padding: 0.25rem 0.5rem;
+      }
+
+      .cartoon-button:hover {
+        transform: translateY(-2px); /* Slight lift effect on hover */
+        box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .cartoon-button.with-flowers::before,
+      .cartoon-button.with-flowers::after {
+        content: "🌸"; /* Floral emoji for decoration */
+        margin: 0 5px;
+        font-size: 1.1em;
+        transition: 0.5s;
+      }
+      .cartoon-button:hover::before,
+      .cartoon-button:hover::after {
+        transform: rotate(90deg); /* Slight lift effect on hover */
+      }
+
+      /* Reviews section */
+
+      .social-proof {
+        width: 100%;
+        overflow: hidden; /* Hide overflowing kots */
+        grid-template-rows: 1fr 1fr;
+        justify-items: center;
+        align-items: center;
+      }
+
+      .reviews {
+        margin-top: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        width: 100%;
+      }
+
+      .rail {
+        position: absolute;
+        top: 0;
+        left: -20px;
+        width: 120%;
+        height: 20px;
+        background: linear-gradient(#8d4e27, #9a542a);
+        border-radius: 5px;
+        border: 2px solid black;
+      }
+
+      .kot-container {
+        display: flex;
+        position: relative;
+        width: 100%;
+        height: 300px; /* Set a fixed height for the container */
+        overflow: hidden; /* Hide kots that go outside the container */
+      }
+
+      .kot {
+        width: 180px;
+        min-height: 220px;
+        border: 1px solid #d8c68a;
+        padding: 15px 12px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+        line-height: 1.5;
+        box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.08),
+          4px 8px 12px rgba(0, 0, 0, 0.35);
+        background: linear-gradient(180deg, #fff9d9 0%, #fdf3c1 100%);
+        margin: 0 20px;
+        flex-shrink: 0;
+        position: absolute;
+        top: 25px;
+        transform-origin: top center;
+        transition: left 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+          transform 0.3s ease;
+      }
+
+      .kot:before {
+        content: "";
+        width: 24px;
+        height: 24px;
+        background: radial-gradient(circle at 30% 30%, #aaa, #333);
+        border-radius: 50%;
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+      }
+
+      .kot:after {
+        content: "";
+        width: 2px;
+        height: 35px;
+        background: #555;
+        position: absolute;
+        top: -25px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .kot strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+        border-bottom: 1px dashed #b6a86a;
+        padding-bottom: 5px;
+      }
+
+      /* Pendulum swing animation - simulates hanging movement */
+      @keyframes pendulum-swing {
+        0% {
+          transform: rotate(var(--start-rotation));
+        }
+        20% {
+          transform: rotate(
+            calc(var(--start-rotation) + var(--swing-direction) * 12deg)
+          );
+        }
+        60% {
+          transform: rotate(
+            calc(var(--end-rotation) - var(--swing-direction) * 8deg)
+          );
+        }
+        80% {
+          transform: rotate(
+            calc(var(--end-rotation) + var(--swing-direction) * 3deg)
+          );
+        }
+        100% {
+          transform: rotate(var(--end-rotation));
+        }
+      }
+
+      .kot.animate {
+        animation: pendulum-swing 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      /* Brands section */
+
+      .brands {
+        position: relative;
+        margin-top: 5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+
+      .cakes {
+        width: 100%;
+        height: 100%;
+        max-width: 40rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding: 1rem;
+        z-index: 2;
+      }
+
+      .cakes > div {
+        flex: 1;
+      }
+
+      .cakes img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        overflow: visible;
+      }
+
+      .table {
+        position: absolute;
+        top: 30vw;
+        height: 20vw;
+        left: -20px;
+        width: 120%;
+        background: linear-gradient(#8d4e27, #9a542a);
+        border-radius: 5px;
+        border: 2px solid black;
+      }
+
+      @media screen and (min-width: 800px) {
+        .table {
+          top: 18vw;
+          height: 30vw;
+        }
+      }
+
+      /* Gallery section */
+
+      .gallery {
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        box-sizing: border-box;
+        gap: 2rem;
+      }
+
+      .wall {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: 2rem;
+        gap: 0.5rem;
+        box-sizing: border-box;
+      }
+
+      @media screen and (min-width: 800px) {
+        .wall {
+          grid-template-columns: repeat(6, 1fr);
+          grid-auto-rows: 4rem;
+        }
+      }
+
+      .frame {
+        position: relative;
+        border-radius: 4px;
+        /* wooden frame with cartoon outline */
+        border: 1px solid black;
+        background: #5c3317;
+        background-image: repeating-linear-gradient(
+          9deg,
+          #8d4e27 0 2px,
+          #9a542a 2px 4px
+        );
+        box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.6);
+      }
+
+      /* hollow center */
+      .frame::before {
+        --fw: 1rem; /* frame thickness */
+        content: "";
+        position: absolute;
+        top: var(--fw);
+        left: var(--fw);
+        right: var(--fw);
+        bottom: var(--fw);
+        background: white; /* transparent area inside */
+        border: 2px solid black; /* inner cartoon outline */
+        z-index: 1;
+      }
+
+      .frame::after {
+        --fw: 1rem; /* frame thickness */
+        --border: 2px;
+        content: "";
+        position: absolute;
+        top: calc(var(--fw) + var(--border));
+        left: calc(var(--fw) + var(--border));
+        right: calc(var(--fw) + var(--border));
+        bottom: calc(var(--fw) + var(--border));
+
+        /* cartoonish diagonal glass ray */
+        background: linear-gradient(
+          135deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.15) 40%,
+          rgba(255, 255, 255, 0.7) 50%,
+          /* bright ray */ rgba(255, 255, 255, 0.15) 60%,
+          transparent 100%
+        );
+
+        border-radius: 2px;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      /* image placed in the hollow */
+      .frame img {
+        --fw: 1rem; /* frame thickness */
+        --border: 2px;
+        position: absolute;
+        top: calc(var(--fw) + var(--border));
+        left: calc(var(--fw) + var(--border));
+        right: var(--fw);
+        bottom: var(--fw);
+        width: 100%;
+        height: 100%;
+        max-width: calc(100% - (2 * var(--fw)) - var(--border) * 2);
+        max-height: calc(100% - (2 * var(--fw)) - var(--border) * 2);
+        object-fit: cover;
+        z-index: 2;
+      }
+
+      /* --- bento variations --- */
+      .frame.narrow {
+        grid-column: span 1;
+        grid-row: span 4;
+      }
+
+      .frame.wide {
+        grid-column: span 2;
+        grid-row: span 4;
+      }
+
+      .frame.tall {
+        grid-column: span 1;
+        grid-row: span 6;
+      }
+
+      .insta-btn {
+        display: inline-flex;
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        font-size: 1.8rem;
+        font-weight: bold;
+        font-family: "Gamja Flower", sans-serif;
+        color: white;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black; /* cartoon outline */
+        border-radius: 8px;
+        cursor: pointer;
+
+        /* Instagram gradient */
+        background: linear-gradient(
+          45deg,
+          #feda75,
+          #fa7e1e,
+          #d62976,
+          #962fbf,
+          #4f5bd5
+        );
+
+        /* cartoon pop effect */
+        box-shadow: 3px 3px 0 black;
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+      }
+
+      .insta-btn:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 5px 5px 0 black;
+      }
+
+      .insta-btn:active {
+        transform: translate(2px, 2px);
+        box-shadow: 1px 1px 0 black;
+      }
+
+      footer {
+        border: 2px solid #000;
+        background-color: #fdf8ed;
+        font-family: "Gamja Flower", sans-serif;
+        color: #000;
+        font-weight: 800;
+        font-size: 1.2em;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <img class="title" src="hero2.png" alt="Ateliers patisserie" />
+      <div class="description">
+        <img src="cake.png" alt="description" />
+        <p>
+          Plongez dans l’univers du cake design
+          <br />
+          <br />
+          Atelier accessible a tous, meme debutants Ideal pour les passionnes de
+          patisserie, les creatifs, ou pour offrir une experience originale
+        </p>
+      </div>
+
+      <button class="cartoon-button with-flowers">Voir les sessions</button>
+    </div>
+
+    <div class="social-proof">
+      <div class="reviews">
+        <div class="rail"></div>
+        <div class="kot-container" id="kotContainer"></div>
+      </div>
+      <div class="brands">
+        <div class="table"></div>
+
+        <div class="cakes">
+          <div><img src="brands-1.png" alt="Brand 1" /></div>
+          <div><img src="brands-2.png" alt="Brand 2" /></div>
+          <div><img src="brands-3.png" alt="Brand 3" /></div>
+        </div>
+      </div>
+
+      <div class="gallery">
+        <a
+          class="cartoon-button"
+          href="https://www.instagram.com/asmabakery__/"
+          target="_blank"
+        >
+          <img
+            src="instagram.png"
+            alt="Instagram Icon"
+            style="width: 24px; height: 24px; margin-right: 8px"
+          />
+          <span>Visitez mon instagram</span>
+        </a>
+        <div class="wall">
+          <div class="frame wide">
+            <img src="asma-4.png" alt="" />
+          </div>
+          <div class="frame narrow">
+            <img src="asma-1.jpg" alt="" />
+          </div>
+          <div class="frame tall">
+            <img src="asma-3.jpg" alt="" />
+          </div>
+          <div class="frame narrow">
+            <img src="asma-9.png" alt="" />
+          </div>
+          <div class="frame narrow">
+            <img src="asma-5.png" alt="" />
+          </div>
+          <div class="frame wide">
+            <img src="asma-2.jpg" alt="" />
+          </div>
+          <div class="frame tall">
+            <img src="asma-6.png" alt="" />
+          </div>
+          <div class="frame narrow">
+            <img src="asma-7.png" alt="" />
+          </div>
+          <div class="frame narrow">
+            <img src="asma-8.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Asma Bakery. Tous droits reserves.</p>
+    </footer>
+
+    <script>
+      const notes = [
+        {
+          owner: "Radia",
+          review: `
+Merci pour la formation Pinterest Cake. Grâce a toi, j'ai pu realiser un gâteau a la fois beau et delicieux. J'ai beaucoup appris et ça me motive a continuer. 🥰🥰
+          `,
+        },
+        {
+          owner: "Mariem",
+          review: `
+U are a wonderful person and ur presence really helped me in my healing
+Love you
+Li mzl ma ja I3ndk bzfff rah Inconscient 😂 so happy to see uu
+          `,
+        },
+        {
+          owner: "Nawel",
+          review: `
+Merci beaucoup Asma bzfff bzf bzf bnin wilh ga3 3jebhom had les 2 jours jazo bzf haylin mak une fille adorable machallah bzf hayla 🥰🥰 wilh machi ga3 kima les reseaux tbani serieuse en vrai. 🫶🫶 
+          `,
+        },
+        {
+          owner: "Asma",
+          review: `
+Vraiment Asma merci beaucoup. The experience was amazing sur kamel les côtes. Personnellement ma 7assitch belwe9t kifach jaz, the vibes, ta bienveillance et ta methodologie..
+koulech etait parfait. ❤️❤️
+          `,
+        },
+        {
+          owner: "Zoubida",
+          review: `
+ je te remercie infiniment pour tout se que tu nous a donner de meilleurs a propos de la formation et j'ai appris beaucoup Kima kont haba❤️❤️
+          `,
+        },
+        {
+          owner: "Ahlem",
+          review: `
+je tiens a te remercier enormement pour tout et les efforts que tu as fourni pour nous et que t'as fait en sorte que chacune de nous sortes très satisfaite de la formation 🫶🫶
+          `,
+        },
+        {
+          owner: "Neila",
+          review: `
+succulent la genoise hyper legère bien aeree les ganaches etaient très savoureuses on a fini le gâteau 😍 tellement il etait delicieux je te remerci encore une fois❤️❤️
+          `,
+        },
+        {
+          owner: "Safou",
+          review: `
+you're so talented & generous wlh ma khaliti hata haja et tu etais spontane khalitina nheso bwahd raha magnifique magnifique wlh lokan
+nsib n3awd nji 😂❤️❤️merci beaucoup habibtiiiii 
+          `,
+        },
+        {
+          owner: "Shaima",
+          review: `
+I really enjoyed had two days tae l'atelier 😭💕
+Personally t3lmt a lot of things li mkntch n3rfhom wli knt ndirhom ghaltin
+Thanks to you dear 🌷💕
+          `,
+        },
+      ];
+
+      const container = document.getElementById("kotContainer");
+      let currentPosition = 0;
+      let kotWidth = 220; // Width of each kot including margin
+      let kotCounter = 0; // To track which note to show next
+
+      const createKot = (title, review, startPosition) => {
+        const kot = document.createElement("div");
+        kot.className = "kot";
+        kot.innerHTML = `<strong>Feedback de ${title}</strong>${review.replace(
+          /\n/g,
+          "<br>"
+        )}`;
+        kot.style.left = `${startPosition}px`;
+        container.appendChild(kot);
+        return kot;
+      };
+
+      const cleanupOldKots = () => {
+        const kots = container.querySelectorAll(".kot");
+        kots.forEach((kot) => {
+          const kotLeft = parseFloat(kot.style.left);
+          // Remove kots that are completely off screen to the left
+          if (kotLeft < -window.innerWidth) {
+            kot.remove();
+          }
+        });
+      };
+
+      const addNewKotsIfNeeded = () => {
+        const kots = container.querySelectorAll(".kot");
+        let rightmostPosition = -kotWidth; // Default if no kots exist
+
+        if (kots.length > 0) {
+          rightmostPosition = Math.max(
+            ...Array.from(kots).map((kot) => parseFloat(kot.style.left))
+          );
+        }
+
+        // Add new kots if we need more on the right side
+        while (rightmostPosition < window.innerWidth + kotWidth * 2) {
+          const noteIndex = kotCounter % notes.length;
+          createKot(
+            notes[noteIndex].owner,
+            notes[noteIndex].review,
+            rightmostPosition + kotWidth
+          );
+          rightmostPosition += kotWidth;
+          kotCounter++;
+        }
+      };
+
+      const initializeCarousel = () => {
+        // Create initial kots to fill the screen plus some extra
+        let position = 0;
+        while (position < window.innerWidth + kotWidth * 3) {
+          const noteIndex = kotCounter % notes.length;
+          createKot(notes[noteIndex].owner, notes[noteIndex].review, position);
+          position += kotWidth;
+          kotCounter++;
+        }
+
+        // Start the infinite scroll animation
+        animateCarousel();
+      };
+
+      const animateCarousel = () => {
+        const swingDirection = 1; // Fixed direction for all kots
+
+        const moveCarousel = () => {
+          // Move all existing kots to the left
+          const kots = container.querySelectorAll(".kot");
+          kots.forEach((kot) => {
+            const currentLeft = parseFloat(kot.style.left);
+            kot.style.left = `${currentLeft - kotWidth}px`;
+
+            // Get the current rotation or default to 0
+            const currentRotation = kot.dataset.currentRotation || "0deg";
+
+            // Set start rotation to where it currently is
+            kot.style.setProperty("--start-rotation", currentRotation);
+
+            // Generate a new end rotation
+            const newEndRotation = `${Math.random() * 8 - 4}deg`;
+            kot.style.setProperty("--end-rotation", newEndRotation);
+            kot.style.setProperty("--swing-direction", swingDirection);
+
+            // Store the end rotation for next time
+            kot.dataset.currentRotation = newEndRotation;
+
+            kot.classList.add("animate");
+
+            // Remove the animation class after the animation completes and set permanent rotation
+            setTimeout(() => {
+              kot.classList.remove("animate");
+              // Apply the final rotation as a permanent transform so it doesn't snap back
+              kot.style.transform = `rotate(${newEndRotation})`;
+            }, 2000);
+          });
+
+          // Clean up old kots and add new ones
+          cleanupOldKots();
+          addNewKotsIfNeeded();
+
+          // Schedule next burst in 2.5 seconds
+          setTimeout(moveCarousel, 2500);
+        };
+
+        moveCarousel();
+      };
+
+      // Initialize the carousel when the page loads
+      document.addEventListener("DOMContentLoaded", initializeCarousel);
+    </script>
+  </body>
+</html>
