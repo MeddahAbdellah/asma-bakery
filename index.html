@@ -18,6 +18,88 @@
         -webkit-tap-highlight-color: transparent;
       }
 
+      /* Loader Styles */
+      .loader-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #f3adc0, #f857a6);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease-out;
+      }
+
+      .loader-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .loader-spinner {
+        width: 80px;
+        height: 80px;
+        border: 6px solid rgba(255, 255, 255, 0.3);
+        border-top: 6px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      .loader-text {
+        color: white;
+        font-family: "Gamja Flower", sans-serif;
+        font-size: 1.5em;
+        font-weight: 800;
+        text-align: center;
+        animation: pulse 1.5s ease-in-out infinite alternate;
+      }
+
+      .loader-cake {
+        font-size: 2em;
+        margin-bottom: 10px;
+        animation: bounce 1s ease-in-out infinite alternate;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0px);
+        }
+        100% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .main-content {
+        opacity: 0;
+        transition: opacity 0.5s ease-in;
+      }
+
+      .main-content.loaded {
+        opacity: 1;
+      }
+
       body {
         margin: 0;
         padding: 0;
@@ -481,87 +563,132 @@
     </style>
   </head>
   <body>
-    <div class="hero">
-      <img class="title" src="hero2.png" alt="Ateliers patisserie" />
-      <div class="description">
-        <img src="cake.png" alt="description" />
-        <p>
-          Plongez dans l’univers du cake design
-          <br />
-          <br />
-          Atelier accessible a tous, meme debutants Ideal pour les passionnes de
-          patisserie, les creatifs, ou pour offrir une experience originale
-        </p>
-      </div>
-
-      <button class="cartoon-button with-flowers">Voir les sessions</button>
+    <!-- Loader Overlay -->
+    <div class="loader-overlay" id="loader">
+      <div class="loader-cake">🍰</div>
+      <div class="loader-spinner"></div>
+      <div class="loader-text">Preparation des delices...</div>
     </div>
 
-    <div class="social-proof">
-      <div class="reviews">
-        <div class="rail"></div>
-        <div class="kot-container" id="kotContainer"></div>
-      </div>
-      <div class="brands">
-        <div class="table"></div>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+      <div class="hero">
+        <img class="title" src="hero2.png" alt="Ateliers patisserie" />
+        <div class="description">
+          <img src="cake.png" alt="description" />
+          <p>
+            Plongez dans l’univers du cake design
+            <br />
+            <br />
+            Atelier accessible a tous, meme debutants Ideal pour les passionnes
+            de patisserie, les creatifs, ou pour offrir une experience originale
+          </p>
+        </div>
 
-        <div class="cakes">
-          <div><img src="brands-1.png" alt="Brand 1" /></div>
-          <div><img src="brands-2.png" alt="Brand 2" /></div>
-          <div><img src="brands-3.png" alt="Brand 3" /></div>
+        <button class="cartoon-button with-flowers">Voir les sessions</button>
+      </div>
+
+      <div class="social-proof">
+        <div class="reviews">
+          <div class="rail"></div>
+          <div class="kot-container" id="kotContainer"></div>
+        </div>
+        <div class="brands">
+          <div class="table"></div>
+
+          <div class="cakes">
+            <div><img src="brands-1.png" alt="Brand 1" /></div>
+            <div><img src="brands-2.png" alt="Brand 2" /></div>
+            <div><img src="brands-3.png" alt="Brand 3" /></div>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <a
+            class="cartoon-button"
+            href="https://www.instagram.com/asmabakery__/"
+            target="_blank"
+          >
+            <img
+              src="instagram.png"
+              alt="Instagram Icon"
+              style="width: 24px; height: 24px; margin-right: 8px"
+            />
+            <span>Visitez mon instagram</span>
+          </a>
+          <div class="wall">
+            <div class="frame wide">
+              <img src="asma-4.png" alt="" />
+            </div>
+            <div class="frame narrow">
+              <img src="asma-1.jpg" alt="" />
+            </div>
+            <div class="frame tall">
+              <img src="asma-3.jpg" alt="" />
+            </div>
+            <div class="frame narrow">
+              <img src="asma-9.png" alt="" />
+            </div>
+            <div class="frame narrow">
+              <img src="asma-5.png" alt="" />
+            </div>
+            <div class="frame wide">
+              <img src="asma-2.jpg" alt="" />
+            </div>
+            <div class="frame tall">
+              <img src="asma-6.png" alt="" />
+            </div>
+            <div class="frame narrow">
+              <img src="asma-7.png" alt="" />
+            </div>
+            <div class="frame narrow">
+              <img src="asma-8.png" alt="" />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="gallery">
-        <a
-          class="cartoon-button"
-          href="https://www.instagram.com/asmabakery__/"
-          target="_blank"
-        >
-          <img
-            src="instagram.png"
-            alt="Instagram Icon"
-            style="width: 24px; height: 24px; margin-right: 8px"
-          />
-          <span>Visitez mon instagram</span>
-        </a>
-        <div class="wall">
-          <div class="frame wide">
-            <img src="asma-4.png" alt="" />
-          </div>
-          <div class="frame narrow">
-            <img src="asma-1.jpg" alt="" />
-          </div>
-          <div class="frame tall">
-            <img src="asma-3.jpg" alt="" />
-          </div>
-          <div class="frame narrow">
-            <img src="asma-9.png" alt="" />
-          </div>
-          <div class="frame narrow">
-            <img src="asma-5.png" alt="" />
-          </div>
-          <div class="frame wide">
-            <img src="asma-2.jpg" alt="" />
-          </div>
-          <div class="frame tall">
-            <img src="asma-6.png" alt="" />
-          </div>
-          <div class="frame narrow">
-            <img src="asma-7.png" alt="" />
-          </div>
-          <div class="frame narrow">
-            <img src="asma-8.png" alt="" />
-          </div>
-        </div>
-      </div>
+      <footer>
+        <p>&copy; 2024 Asma Bakery. Tous droits reserves.</p>
+      </footer>
     </div>
-
-    <footer>
-      <p>&copy; 2024 Asma Bakery. Tous droits reserves.</p>
-    </footer>
+    <!-- End main-content -->
 
     <script>
+      // Loader functionality
+      function hideLoader() {
+        const loader = document.getElementById("loader");
+        const mainContent = document.getElementById("mainContent");
+
+        loader.classList.add("hidden");
+        mainContent.classList.add("loaded");
+
+        // Remove loader from DOM after transition
+        setTimeout(() => {
+          loader.style.display = "none";
+        }, 500);
+      }
+
+      function checkAllAssetsLoaded() {
+        // Check if fonts are loaded
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(() => {
+            // Small delay to ensure smooth transition
+            setTimeout(hideLoader, 300);
+          });
+        } else {
+          // Fallback for browsers that don't support document.fonts
+          setTimeout(hideLoader, 1500);
+        }
+      }
+
+      // Wait for all images and other resources to load
+      window.addEventListener("load", checkAllAssetsLoaded);
+
+      // Fallback: hide loader after 3 seconds if something goes wrong
+      setTimeout(hideLoader, 3000);
+
+      // Reviews carousel script
       const notes = [
         {
           owner: "Radia",
