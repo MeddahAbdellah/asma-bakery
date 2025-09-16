@@ -127,9 +127,9 @@
 
       /* Hero section */
       .hero {
-        display: grid;
-        grid-template-rows: 4fr 2fr 1fr;
-        justify-items: center;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
         align-items: center;
         width: 100%;
         height: 100dvh;
@@ -148,10 +148,8 @@
       }
 
       .description {
+        margin-inline: 1rem;
         position: relative;
-        align-self: stretch; /* fill the 1fr row */
-        justify-self: center;
-        max-width: 100%;
         overflow: hidden; /* clip if needed */
         background: none;
         font-family: "Gamja Flower", sans-serif;
@@ -160,27 +158,37 @@
       }
 
       .description img {
-        width: 100%;
+        max-width: 100%;
+        width: auto;
         height: auto;
         outline: none;
         -webkit-tap-highlight-color: transparent;
         user-select: none;
         max-height: 100%;
-        max-width: 100%;
         object-fit: contain;
+      }
+
+      @media screen and (min-width: 800px) {
+        .description img {
+          max-width: 50rem;
+        }
       }
 
       .description p {
         position: absolute;
         top: 0;
         left: 0;
-        padding-inline: 1rem;
-        padding-block: 1rem;
+        padding-inline: 3rem;
+        padding-block: 5rem;
         box-sizing: border-box;
         color: #000;
         width: 100%;
         margin: 0;
         pointer-events: none; /* Ensure only the button itself is clickable */
+      }
+
+      .book-session {
+        margin-bottom: 2rem;
       }
 
       .cartoon-button {
@@ -585,7 +593,9 @@
           </p>
         </div>
 
-        <button class="cartoon-button with-flowers">Voir les sessions</button>
+        <button class="cartoon-button with-flowers book-session">
+          Voir les sessions
+        </button>
       </div>
 
       <div class="social-proof">
@@ -649,7 +659,7 @@
       </div>
 
       <footer>
-        <p>&copy; 2024 Asma Bakery. Tous droits reserves.</p>
+        <p>&copy; 2025 Asma Bakery. Tous droits reserves.</p>
       </footer>
     </div>
     <!-- End main-content -->
